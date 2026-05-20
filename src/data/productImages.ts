@@ -1,4 +1,4 @@
-const base = '/assets/product';
+const base = '';
 
 export const productImages = {
   heroMain: `${base}/product-flat-box-stick.webp`,
@@ -14,10 +14,10 @@ export const productImages = {
 };
 
 export const requiredProductImageFiles = [
-  'product-flat-box-stick.webp',
-  'product-box-stick-powder.webp',
-  'product-stick-powder.webp',
-  'product-box-standing.webp',
-  'product-open-box-cup.webp',
-  'product-spilled-box-sticks.webp'
+  '/product-flat-box-stick.webp',
+  '/product-box-stick-powder.webp',
+  '/product-stick-powder.webp',
+  '/product-box-standing.webp',
+  '/product-open-box-cup.webp',
+  '/product-spilled-box-sticks.webp'
 ];
