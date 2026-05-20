@@ -1,0 +1,2 @@
+import { SectionShell } from '../common/SectionShell';import { landingContent as c } from '../../data/landingContent';
+export function FormulaMatrixSection(){return <SectionShell><div className="container"><h2>3X3 完整核心配方</h2><p>三效守護，精準捍衛</p><div className="matrix-wrap"><div className="matrix">{Array.from({length:9}).map((_,i)=><div key={i}>{i+1}</div>)}</div><div>{c.core33.map((x)=><div className="pill-card" key={x}>{x}</div>)}</div></div></div></SectionShell>}

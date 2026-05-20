@@ -1,0 +1,2 @@
+import { SectionShell } from '../common/SectionShell';import { landingContent as c } from '../../data/landingContent';
+export function GoldenFormulaSection(){return <SectionShell id="golden-formula"><div className="container"><h2>六大黃金複方再升級</h2><p>護衛新境界，守衛更全面</p><div className="grid-3">{c.goldenFormula.map(([n,d])=><article className="feature-card" key={n}><h3>{n}</h3><p>{d}</p></article>)}</div></div></SectionShell>}
