@@ -1,25 +1,35 @@
-import { FormulaSection } from './components/FormulaSection';
-import { HeroSection } from './components/HeroSection';
-import { PainPointSection } from './components/PainPointSection';
-import { SectionContainer } from './components/SectionContainer';
-import { landingContent } from './data/landingContent';
+import { landingContent as c } from './data/landingContent';
+import { productImages } from './data/productImages';
+import { ProductImage } from './components/ProductImage';
+
+const icon = ['◉', '◎', '◌', '◍'];
+
+const wrap = 'mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8';
 
 export default function App() {
-  return (
-    <main className="min-h-screen bg-[#F7FCFF] text-[#243241]">
-      <HeroSection />
-      <PainPointSection />
-      <FormulaSection />
-      <SectionContainer className="pb-16">
-        <div id="contact" className="rounded-3xl border border-[#D9ECF7] bg-white px-6 py-10 text-center shadow-sm">
-          <p className="text-2xl font-bold text-[#1F6FB2]">{landingContent.cta.title}</p>
-          <p className="mt-3">{landingContent.cta.subtitle}</p>
-          <a href={landingContent.cta.link} className="mt-6 inline-block rounded-full bg-[#F59A23] px-6 py-3 font-semibold text-white">
-            {landingContent.cta.button}
-          </a>
-          <p className="mt-3 text-xs text-[#256FAF]">{landingContent.cta.note}</p>
-        </div>
-      </SectionContainer>
-    </main>
-  );
+  return <main className="min-h-screen bg-[#F6FBFF] text-[#243241]">
+    <header className="sticky top-0 z-50 border-b border-[#D9ECF7]/70 bg-white/85 backdrop-blur">
+      <div className={`${wrap} flex h-16 items-center justify-between`}><p className="font-bold text-[#2D7EDB]">{c.brand}</p><nav className="hidden gap-6 text-sm md:flex">{c.nav.map(n=><a key={n.href} href={n.href} className="transition hover:text-[#2D7EDB]">{n.label}</a>)}</nav></div>
+    </header>
+
+    <section id="hero" className="relative overflow-hidden bg-gradient-to-b from-[#EAF5FF] via-white to-[#F7FBFF] py-16 lg:py-24"><div className={wrap}><div className="grid items-center gap-10 lg:grid-cols-2"><div><p className="inline-block rounded-full bg-white px-4 py-1 text-sm font-semibold text-[#2D7EDB] shadow">{c.hero.tag}</p><h1 className="mt-4 text-4xl font-extrabold leading-tight text-[#1b5e9d] sm:text-5xl lg:text-6xl">{c.hero.title}</h1><p className="mt-4 text-lg">{c.hero.subtitle}</p><p className="mt-3 text-sm text-[#33506a] sm:text-base">{c.hero.desc}</p><div className="mt-7 grid gap-3 sm:grid-cols-3">{c.hero.features.map((f,i)=><div key={f} className="rounded-2xl border border-[#D9ECF7] bg-white p-4 shadow-sm"><p className="text-[#F5A623]">{icon[i]}</p><p className="mt-2 text-sm font-semibold">{f}</p></div>)}</div></div><div className="relative"><div className="absolute -left-10 top-8 h-52 w-52 rounded-full bg-[#b8dbff]/45 blur-3xl"/><ProductImage src={productImages.heroMain} alt="護衛君常舒 IgY 益生菌主產品圖" className="relative z-10 w-full rounded-[2rem] bg-white p-3 shadow-xl"/><div className="mt-4 grid grid-cols-2 gap-4"><ProductImage src={productImages.heroSupport} alt="護衛君開盒與杯裝情境" className="rounded-3xl bg-white p-2 shadow"/><ProductImage src={productImages.heroAlt} alt="護衛君直立盒裝" className="rounded-3xl bg-white p-2 shadow"/></div></div></div></div></section>
+
+    <section id="pain" className="py-16"><div className={wrap}><p className="text-sm font-semibold text-[#2D7EDB]">{c.painPoint.tag}</p><h2 className="mt-2 text-3xl font-bold">{c.painPoint.title}</h2><p className="mt-2">{c.painPoint.subtitle}</p><div className="mt-8 grid gap-4 md:grid-cols-4">{c.painPoint.cards.map((t,i)=><article key={t} className="rounded-3xl border border-[#D9ECF7] bg-white p-5 shadow-sm transition hover:-translate-y-0.5"><div className="mb-4 aspect-video rounded-2xl bg-gradient-to-br from-[#F2F9FF] to-[#fff2dd]"/><p className="text-sm font-semibold text-[#2D7EDB]">0{i+1}</p><p className="mt-2 text-sm">{t}</p></article>)}</div><div className="my-8 grid items-center gap-6 rounded-3xl border border-[#D9ECF7] bg-gradient-to-r from-white to-[#F2F9FF] p-6 lg:grid-cols-2"><ProductImage src={productImages.painMain} alt="護衛君產品粉包展示" className="w-full rounded-3xl bg-white p-2 shadow"/><ProductImage src={productImages.painSupport} alt="護衛君盒裝與粉末展示" className="w-full rounded-3xl bg-white p-2 shadow"/></div><div className="grid gap-4 md:grid-cols-4">{c.painPoint.benefits.map((b,i)=><div key={b} className="rounded-2xl bg-[#EAF5FF] p-4 text-sm"><p className="font-bold text-[#1b5e9d]">{c.scenarios.items[i].title}</p><p className="mt-1">{b.replace(/^.*：/,'')}</p></div>)}</div></div></section>
+
+    <section id="formula" className="bg-white py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.formula.title}</h2><p className="mt-2">{c.formula.subtitle}</p><p className="mt-2 text-sm text-[#43617c]">{c.formula.desc}</p><div className="mt-8 grid gap-8 lg:grid-cols-[1.25fr_1fr]"><div className="rounded-3xl border border-[#D9ECF7] bg-gradient-to-b from-[#f4faff] to-white p-6"><div className="grid grid-cols-3 gap-3">{Array.from({length:9}).map((_,i)=><div key={i} className="aspect-square rounded-2xl border border-[#d8ecfa] bg-white p-3"><div className="h-full rounded-xl bg-gradient-to-br from-[#eaf5ff] to-[#fff4e1]"/></div>)}</div><div className="mt-5 grid gap-3 md:grid-cols-3">{c.formula.items.map((it,idx)=><article key={it.title} className="rounded-2xl bg-white p-4 shadow-sm"><p className="text-[#F5A623]">{icon[idx]}</p><p className="mt-1 font-bold text-[#1b5e9d]">{it.title}</p><p className="text-sm">{it.content}</p></article>)}</div></div><div className="grid gap-4"><ProductImage src={productImages.formulaMain} alt="核心配方主產品圖" className="w-full rounded-3xl bg-[#f6fbff] p-2"/><ProductImage src={productImages.formulaSupport} alt="條包粉末輔助圖" className="w-full rounded-3xl bg-[#f6fbff] p-2"/></div></div></div></section>
+
+    <section id="scenarios" className="py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.scenarios.title}</h2><p className="mt-2 text-[#3c5c77]">{c.scenarios.subtitle}</p><div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{c.scenarios.items.map((it,i)=><article key={it.title} className="rounded-3xl border border-[#D9ECF7] bg-white p-5 shadow-sm"><div className="mb-3 h-24 rounded-2xl bg-gradient-to-tr from-[#edf7ff] to-[#fff2df]"/><p className="font-bold text-[#1b5e9d]">{icon[i]} {it.title}</p><p className="mt-2 text-sm">{it.desc}</p></article>)}</div></div></section>
+
+    <section id="reasons" className="bg-gradient-to-b from-white to-[#F2F9FF] py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.reasons.title}</h2><div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{c.reasons.items.map((r,i)=><article key={r} className="rounded-2xl bg-white p-5 shadow-sm"><p className="text-[#F5A623] text-xl">{icon[i]}</p><p className="mt-2 font-semibold">{r}</p></article>)}</div></div></section>
+
+    <section id="spec" className="py-16"><div className={`${wrap} grid gap-8 lg:grid-cols-2`}><ProductImage src={productImages.specImage} alt="產品規格包裝展示圖" className="w-full rounded-3xl border border-[#D9ECF7] bg-white p-4 shadow"/><div><h2 className="text-3xl font-bold">{c.specs.title}</h2><div className="mt-6 overflow-hidden rounded-2xl border border-[#D9ECF7] bg-white">{c.specs.items.map(([k,v])=><div key={k} className="grid grid-cols-[120px_1fr] border-b border-[#edf6fd] p-4 text-sm last:border-b-0"><p className="font-semibold text-[#1b5e9d]">{k}</p><p>{v}</p></div>)}</div></div></div></section>
+
+    <section id="usage" className="py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.usage.title}</h2><div className="mt-6 grid gap-4 md:grid-cols-3">{c.usage.steps.map((s,i)=><article key={s} className="rounded-2xl border border-[#D9ECF7] bg-white p-5"><p className="text-sm font-bold text-[#2D7EDB]">STEP {i+1}</p><p className="mt-2">{s}</p></article>)}</div></div></section>
+
+    <section id="audience" className="bg-white py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.audience.title}</h2><div className="mt-6 grid gap-4 md:grid-cols-2">{c.audience.items.map(a=><div key={a} className="rounded-2xl bg-[#F2F9FF] p-4">{a}</div>)}</div></div></section>
+
+    <section id="faq" className="py-16"><div className={wrap}><h2 className="text-3xl font-bold">{c.faq.title}</h2><div className="mt-6 space-y-4">{c.faq.items.map(([q,a])=><details key={q} className="rounded-2xl border border-[#D9ECF7] bg-white p-5"><summary className="cursor-pointer font-semibold">{q}</summary><p className="mt-3 text-sm text-[#3b5872]">{a}</p></details>)}</div></div></section>
+
+    <section id="cta" className="pb-20"><div className={wrap}><div className="grid items-center gap-6 rounded-3xl bg-gradient-to-r from-[#2D7EDB] to-[#5ca6f5] p-8 text-white lg:grid-cols-[1fr_220px]"><div><h2 className="text-3xl font-bold">{c.cta.title}</h2><p className="mt-2 text-white/90">{c.cta.subtitle}</p><a href={c.cta.link} className="mt-6 inline-block rounded-full bg-[#FF9F1C] px-6 py-3 font-bold transition hover:brightness-110">{c.cta.button}</a><p className="mt-3 text-xs">{c.cta.note}</p></div><ProductImage src={productImages.ctaImage} alt="CTA 區產品圖" className="w-full rounded-2xl bg-white/90 p-2"/></div></div></section>
+  </main>;
 }
