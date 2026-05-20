@@ -1,2 +1,17 @@
-import { landingContent as c } from '../../data/landingContent';import { IconBadge } from '../common/IconBadge';
-export function TrustStrip(){return <section className="trust-strip"><div className="container grid-4">{c.trust.map((t,i)=><IconBadge key={t} icon={['🏅','🩺','🛡️','✅'][i]} text={t}/> )}</div></section>}
+import { landingContent as c } from '../../data/landingContent';
+
+export function TrustStrip() {
+  const icons = ['🏅', '🩺', '🛡️', '✅'];
+  return (
+    <section className="trust-strip">
+      <div className="container trust-grid">
+        {c.trust.map((t, i) => (
+          <article className="trust-badge" key={t}>
+            <span>{icons[i]}</span>
+            <p>{t}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
