@@ -1,0 +1,2 @@
+import { SectionShell } from '../common/SectionShell';import { SectionHeading } from '../common/SectionHeading';import { landingContent as c } from '../../data/landingContent';
+export function PainPointSection(){return <SectionShell id="pain"><div className="container"><SectionHeading title="你是否也有這些日常困擾？"/><div className="grid-4">{c.painPoints.map((p,i)=><article className="scenario-card" key={p}><b>0{i+1}</b><h3>日常情境</h3><p>{p}</p></article>)}</div></div></SectionShell>}
